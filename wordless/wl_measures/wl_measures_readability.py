@@ -19,7 +19,6 @@
 import bisect
 import copy
 import math
-import random
 import re
 
 import numpy
@@ -34,6 +33,7 @@ from wordless.wl_nlp import (
     wl_texts
 )
 from wordless.wl_utils import wl_misc, wl_paths
+import secrets
 
 _tr = QCoreApplication.translate
 
@@ -712,7 +712,7 @@ def rgl(main, text):
         text = get_nums(main, text)
 
         if text.num_words >= 150:
-            sample_start = random.randint(0, text.num_words - 150)
+            sample_start = secrets.SystemRandom().randint(0, text.num_words - 150)
             sample = text.words_flat[sample_start : sample_start + 150]
 
             num_words_1_syl = get_num_words_syls(sample, len_min = 1, len_max = 1)
@@ -895,7 +895,7 @@ def lensear_write_formula(main, text):
 
         if text.num_words > 0:
             if text.num_words > 100:
-                sample_start = random.randint(0, text.num_words - 100)
+                sample_start = secrets.SystemRandom().randint(0, text.num_words - 100)
             else:
                 sample_start = 0
 
@@ -1222,7 +1222,7 @@ def spache_readability_formula(main, text):
 
             # Sample 3 times
             for _ in range(3):
-                sample_start = random.randint(0, text.num_words - 100)
+                sample_start = secrets.SystemRandom().randint(0, text.num_words - 100)
                 sample = text.words_flat[sample_start : sample_start + 100]
 
                 num_sentences = get_num_sentences_sample(text, sample, sample_start)
@@ -1288,7 +1288,7 @@ def trankle_bailers_readability_formula(main, text):
         if text.num_words >= 100:
             pos_tag_words(main, text)
 
-            sample_start = random.randint(0, text.num_words - 100)
+            sample_start = secrets.SystemRandom().randint(0, text.num_words - 100)
             sample = text.words_flat[sample_start : sample_start + 100]
 
             num_chars_alnum = sum((1 for token in sample for char in token if char.isalnum()))

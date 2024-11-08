@@ -19,13 +19,13 @@
 # pylint: disable=unused-argument
 
 import collections
-import random
 
 import numpy
 from PyQt5.QtCore import QCoreApplication
 import scipy
 
 from wordless.wl_nlp import wl_nlp_utils, wl_pos_tagging
+import secrets
 
 _tr = QCoreApplication.translate
 
@@ -459,7 +459,7 @@ def vocdd(main, text):
 
         for j in range(100):
             if n <= text.num_tokens:
-                sample = random.sample(tokens, k = n)
+                sample = secrets.SystemRandom().sample(tokens, k = n)
             else:
                 sample = tokens
 
