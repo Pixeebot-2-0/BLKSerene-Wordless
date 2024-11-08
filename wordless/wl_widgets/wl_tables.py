@@ -18,7 +18,6 @@
 
 import csv
 import os
-import random
 import re
 import traceback
 
@@ -47,6 +46,7 @@ from wordless.wl_dialogs import wl_dialogs_misc, wl_msg_boxes
 from wordless.wl_nlp import wl_nlp_utils
 from wordless.wl_utils import wl_misc, wl_paths, wl_threading
 from wordless.wl_widgets import wl_buttons
+import secrets
 
 _tr = QCoreApplication.translate
 
@@ -705,7 +705,7 @@ class Wl_Worker_Exp_Table(wl_threading.Wl_Worker):
                     if settings_concordancer['zapping']:
                         # Randomize outputs
                         if settings_concordancer['randomize_outputs']:
-                            random.shuffle(outputs)
+                            secrets.SystemRandom().shuffle(outputs)
 
                         # Assign line numbers
                         if settings_concordancer['add_line_nums']:
